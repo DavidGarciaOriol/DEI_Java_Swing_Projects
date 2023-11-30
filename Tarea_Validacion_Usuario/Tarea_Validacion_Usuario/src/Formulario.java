@@ -4,12 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Formulario extends JFrame implements ActionListener{
-    Container contentPane;
-    GridLayout gridLayout;
-    JLabel label_usuario, label_password;
-    JTextField textField_usuario, textField_password;
-    JButton button_enviar;
-    JDialog dialog = new JDialog();
+    private Container contentPane;
+    private GridLayout gridLayout;
+    private JLabel label_usuario, label_password;
+    private JTextField textField_usuario, textField_password;
+    private JButton button_enviar;
 
     public Formulario(){
         super("Formulario");
@@ -72,6 +71,8 @@ public class Formulario extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        validarDatos(textField_usuario, textField_password);
+        boolean user_pass_correctos = validarDatos(textField_usuario, textField_password);
+        DialogFormulario dialogFormulario = new DialogFormulario(this,true, user_pass_correctos);
+        dialogFormulario.setVisible(true);
     }
 }
