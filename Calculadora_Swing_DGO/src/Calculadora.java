@@ -1,8 +1,8 @@
 import javax.swing.*;
 
-public class Calculadora {
+public class Calculadora extends JFrame {
 
-    public static void main(String[] args) {
+    public Calculadora(){
 
     }
 
