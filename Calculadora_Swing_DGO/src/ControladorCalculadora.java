@@ -1,6 +1,8 @@
+import javax.swing.*;
+
 public class ControladorCalculadora {
 
-    public int calcular(char operacion, int num1, int num2){
+    private int calcular(char operacion, int num1, int num2){
 
         int resultado;
 
@@ -22,4 +24,17 @@ public class ControladorCalculadora {
         }
         return resultado;
     }
+
+    private void borrarTextBox(JTextField textField){
+        textField.setText("0");
+    }
+
+    private void suprimirNumero(JTextField textField){
+        textField.setText(textField.getText().substring(0,-1));
+    }
+
+    private void esribirNumero(JTextField textField, char numero){
+        textField.setText(textField.getText()+numero);
+    }
+
 }
