@@ -16,12 +16,27 @@ public class VentanaConversor extends JFrame {
         setSize(400, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container cp = getContentPane();
-        cp.setLayout(new GridLayout(3,2));
+
+        GridLayout gridLayout = new GridLayout(3,2);
+
+        cp.setLayout(gridLayout);
 
         celsiusLabel.setHorizontalAlignment(SwingConstants.CENTER);
         celsiusLabel.setSize(60,60);
-        fahrenheitLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
+        fahrenheitLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        fahrenheitLabel.setSize(60,60);
+
+        JPanel panelSliderCelsius = new JPanel();
+        JPanel panelSliderFahrenheit = new JPanel();
+
+        panelSliderCelsius.setLayout(new BoxLayout(panelSliderCelsius, BoxLayout.Y_AXIS));
+        panelSliderCelsius.add(sliderCelsius);
+
+        panelSliderFahrenheit.setLayout(new BoxLayout(panelSliderFahrenheit, BoxLayout.Y_AXIS));
+        panelSliderFahrenheit.add(sliderFahrenheit);
+
+        sliderCelsius.setLayout(new BoxLayout(sliderCelsius, BoxLayout.Y_AXIS));
         sliderCelsius.setMaximum(60);
         sliderCelsius.setMinimum(0);
         sliderCelsius.setOrientation(SwingConstants.VERTICAL);
@@ -30,7 +45,9 @@ public class VentanaConversor extends JFrame {
         sliderCelsius.setPaintTrack(true);
         sliderCelsius.setPaintTicks(true);
         sliderCelsius.setPaintLabels(true);
+        sliderCelsius.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
 
+        sliderFahrenheit.setLayout(new BoxLayout(sliderFahrenheit, BoxLayout.Y_AXIS));
         sliderFahrenheit.setMaximum(140);
         sliderFahrenheit.setMinimum(32);
         sliderFahrenheit.setOrientation(SwingConstants.VERTICAL);
@@ -40,19 +57,25 @@ public class VentanaConversor extends JFrame {
         sliderFahrenheit.setPaintTicks(true);
         sliderFahrenheit.setPaintLabels(true);
 
+        JPanel panelTextoCelsius = new JPanel();
+        panelTextoCelsius.add(gradosCelsius);
+
+        JPanel panelTextoFahrenheit = new JPanel();
+        panelTextoFahrenheit.add(gradosFahrenheit);
+
         gradosCelsius.setSize(20,20);
         gradosCelsius.setMargin(new Insets(10,10,10,10));
         gradosCelsius.setEditable(false);
         gradosCelsius.setHorizontalAlignment(SwingConstants.CENTER);
 
-        gradosFahrenheit.setSize(20,20);
+        gradosFahrenheit.setSize(42,32);
         gradosFahrenheit.setMargin(new Insets(10,10,10,10));
         gradosFahrenheit.setEditable(false);
         gradosFahrenheit.setHorizontalAlignment(SwingConstants.CENTER);
 
         cp.add(celsiusLabel); cp.add(fahrenheitLabel);
-        cp.add(sliderCelsius); cp.add(sliderFahrenheit);
-        cp.add(gradosCelsius); cp.add(gradosFahrenheit);
+        cp.add(panelSliderCelsius); cp.add(panelSliderFahrenheit);
+        cp.add(panelTextoCelsius); cp.add(panelTextoFahrenheit);
 
         sliderCelsius.addChangeListener(new ChangeListener() {
             @Override
