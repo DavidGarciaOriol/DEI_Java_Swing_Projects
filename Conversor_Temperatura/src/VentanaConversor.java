@@ -27,14 +27,18 @@ public class VentanaConversor extends JFrame {
         sliderCelsius.setOrientation(SwingConstants.VERTICAL);
         sliderCelsius.setMinorTickSpacing(5);
         sliderCelsius.setMajorTickSpacing(10);
+        sliderCelsius.setPaintTrack(true);
         sliderCelsius.setPaintTicks(true);
+        sliderCelsius.setPaintLabels(true);
 
-        sliderFahrenheit.setMaximum(132);
+        sliderFahrenheit.setMaximum(140);
         sliderFahrenheit.setMinimum(32);
         sliderFahrenheit.setOrientation(SwingConstants.VERTICAL);
         sliderFahrenheit.setMinorTickSpacing(10);
         sliderFahrenheit.setMajorTickSpacing(20);
+        sliderFahrenheit.setPaintTrack(true);
         sliderFahrenheit.setPaintTicks(true);
+        sliderFahrenheit.setPaintLabels(true);
 
         gradosCelsius.setSize(20,20);
         gradosCelsius.setMargin(new Insets(10,10,10,10));
@@ -54,7 +58,9 @@ public class VentanaConversor extends JFrame {
             @Override
             public void stateChanged(ChangeEvent e) {
                 gradosCelsius.setText(String.valueOf(sliderCelsius.getValue()));
-                sliderFahrenheit.setValue(sliderCelsius.getValue() * 9/5 + 32);
+                if (sliderCelsius.hasFocus()){
+                    sliderFahrenheit.setValue(sliderCelsius.getValue() * 9/5 + 32);
+                }
             }
         });
 
@@ -62,7 +68,10 @@ public class VentanaConversor extends JFrame {
             @Override
             public void stateChanged(ChangeEvent e) {
                 gradosFahrenheit.setText(String.valueOf(sliderFahrenheit.getValue()));
-                sliderCelsius.setValue((sliderFahrenheit.getValue()-32) * 5/9);
+
+                if (sliderFahrenheit.hasFocus()){
+                    sliderCelsius.setValue((sliderFahrenheit.getValue()-32) * 5/9);
+                }
             }
         });
     }
