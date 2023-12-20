@@ -59,16 +59,16 @@ public class VentanaConversor extends JFrame {
 
         JPanel panelTextoCelsius = new JPanel();
         panelTextoCelsius.add(gradosCelsius);
+        panelTextoCelsius.setSize(40,40);
 
         JPanel panelTextoFahrenheit = new JPanel();
         panelTextoFahrenheit.add(gradosFahrenheit);
+        panelTextoFahrenheit.setSize(40,40);
 
-        gradosCelsius.setSize(20,20);
         gradosCelsius.setMargin(new Insets(10,10,10,10));
         gradosCelsius.setEditable(false);
         gradosCelsius.setHorizontalAlignment(SwingConstants.CENTER);
 
-        gradosFahrenheit.setSize(42,32);
         gradosFahrenheit.setMargin(new Insets(10,10,10,10));
         gradosFahrenheit.setEditable(false);
         gradosFahrenheit.setHorizontalAlignment(SwingConstants.CENTER);
