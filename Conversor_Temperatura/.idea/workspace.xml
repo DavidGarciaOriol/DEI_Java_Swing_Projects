@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba5e748e-057a-4f22-9355-9ab44294d8bf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Ejercicio_Ventana/src/Ventana.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Ejercicio_Ventana/src/VentanaApp.java" afterDir="false" />
-    </list>
+    <list default="true" id="ba5e748e-057a-4f22-9355-9ab44294d8bf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
