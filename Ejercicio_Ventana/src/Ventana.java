@@ -65,29 +65,61 @@ public class Ventana extends JFrame {
         buttonSupIzq.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setLocation(0,0);
-                setTitle("Arriba Izquierda");
+                // setLocation(0,0);
+                // setTitle("Arriba Izquierda");
+
+                JFrame newFrame = new JFrame();
+                newFrame.setVisible(true);
+                newFrame.setLocation(0,0);
+                newFrame.setTitle("Arriba Izquierda");
+                newFrame.setSize(300,300);
+
+                generarBotonCerrar(newFrame);
             }
         });
         buttonSupDer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setLocation(1920-getSize().width,0);
-                setTitle("Arriba Derecha");
+                // setLocation(1920-getSize().width,0);
+                // setTitle("Arriba Derecha");
+
+                JFrame newFrame = new JFrame();
+                newFrame.setVisible(true);
+                newFrame.setLocation(1920-getSize().width,0);
+                newFrame.setTitle("Arriba Derecha");
+                newFrame.setSize(300,300);
+
+                generarBotonCerrar(newFrame);
             }
         });
         buttonBotIzq.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setLocation(0,1080-getSize().height);
-                setTitle("Abajo Izquierda");
+                // setLocation(0,1080-getSize().height);
+                // setTitle("Abajo Izquierda");
+
+                JFrame newFrame = new JFrame();
+                newFrame.setVisible(true);
+                newFrame.setLocation(0,1080-getSize().height);
+                newFrame.setTitle("Abajo Izquierda");
+                newFrame.setSize(300,300);
+
+                generarBotonCerrar(newFrame);
             }
         });
         buttonBotDer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setLocation(1920-getSize().width,1080-getSize().height);
-                setTitle("Abajo Derecha");
+                // setLocation(1920-getSize().width,1080-getSize().height);
+                // setTitle("Abajo Derecha");
+
+                JFrame newFrame = new JFrame();
+                newFrame.setVisible(true);
+                newFrame.setLocation(1920-getSize().width,1080-getSize().height);
+                newFrame.setTitle("Abajo Derecha");
+                newFrame.setSize(300,300);
+
+                generarBotonCerrar(newFrame);
             }
         });
         centroButton.addItemListener(new ItemListener() {
@@ -101,11 +133,21 @@ public class Ventana extends JFrame {
                     setSize(300,300);
                     centroButton.setText("Aumenta Dimensión");
                     setTitle("300 x 300");
-
                 }
             }
         });
-
     }
 
+    public void generarBotonCerrar(JFrame newFrame){
+        JButton closeButton = new JButton();
+        closeButton.setText("Cerrar");
+        newFrame.add(closeButton);
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newFrame.setVisible(false);
+                newFrame.dispose();
+            }
+        });
+    }
 }
