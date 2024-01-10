@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class Ventana extends JFrame {
 
@@ -7,15 +11,16 @@ public class Ventana extends JFrame {
     private JButton buttonSupDer = new JButton();
     private JButton buttonBotIzq = new JButton();
     private JButton buttonBotDer = new JButton();
-    private JButton centroButton = new JButton();
+    private JToggleButton centroButton = new JToggleButton();
     private Container contentPane = getContentPane();
     GridBagLayout layout = new GridBagLayout();
     GridBagConstraints layoutConst = new GridBagConstraints();
 
     public Ventana(){
 
-        super("Ventana");
-        setSize(1280,720);
+        super("Centro");
+        setSize(300,300);
+        setLocation(400,200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         contentPane.setLayout(layout);
 
@@ -25,7 +30,7 @@ public class Ventana extends JFrame {
         buttonSupDer.setText("Arriba Derecha");
         buttonSupDer.setMargin(new Insets(20,20,20,20));
 
-        centroButton.setText("Centro");
+        centroButton.setText("Aumenta Dimensión");
         centroButton.setMargin(new Insets(20,20,20,20));
 
         buttonBotIzq.setText("Abajo Izquierda");
@@ -56,6 +61,50 @@ public class Ventana extends JFrame {
         layoutConst.gridx = 2;
         layoutConst.gridy = 2;
         contentPane.add(buttonBotDer, layoutConst);
+
+        buttonSupIzq.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setLocation(0,0);
+                setTitle("Arriba Izquierda");
+            }
+        });
+        buttonSupDer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setLocation(1920-getSize().width,0);
+                setTitle("Arriba Derecha");
+            }
+        });
+        buttonBotIzq.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setLocation(0,1080-getSize().height);
+                setTitle("Abajo Izquierda");
+            }
+        });
+        buttonBotDer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setLocation(1920-getSize().width,1080-getSize().height);
+                setTitle("Abajo Derecha");
+            }
+        });
+        centroButton.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    setSize(600,600);
+                    centroButton.setText("Disminuye Dimensión");
+                    setTitle("600 x 600");
+                } else if(e.getStateChange() == ItemEvent.DESELECTED){
+                    setSize(300,300);
+                    centroButton.setText("Aumenta Dimensión");
+                    setTitle("300 x 300");
+
+                }
+            }
+        });
 
     }
 
