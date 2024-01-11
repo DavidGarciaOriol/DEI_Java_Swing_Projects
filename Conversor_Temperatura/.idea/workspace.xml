@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba5e748e-057a-4f22-9355-9ab44294d8bf" name="Changes" comment="" />
+    <list default="true" id="ba5e748e-057a-4f22-9355-9ab44294d8bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej1/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej1/VentanaApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej1/VentanaEmergente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej2/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej3/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej4/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej5/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej6/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej7/App.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
