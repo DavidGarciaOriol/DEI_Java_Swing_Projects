@@ -44,6 +44,7 @@ public class VentanaPrincipal extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 listaPeliculasComboBox.addItem(nombrePeliculaCampo.getText());
                 listaPeliculasComboBox.setSelectedIndex(listaPeliculasComboBox.getItemCount()-1);
+                nombrePeliculaCampo.setText("");
             }
         });
     }
