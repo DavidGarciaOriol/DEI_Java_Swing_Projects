@@ -3,15 +3,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DialogFormulario extends JDialog implements ActionListener {
-
     private JButton button;
     private JLabel userpasscorrecto_label;
-
     public DialogFormulario(Formulario parent, boolean modal, boolean user_pass_correctos){
         super(parent, modal);
         setLayout(null);
-
-
 
         setBounds(440,10,410,210);
 
