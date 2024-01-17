@@ -1,5 +1,7 @@
 package Ej1_Saludador;
 
+import net.miginfocom.swing.MigLayout;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,36 +12,22 @@ public class VentanaPrincipal extends JFrame {
     private JLabel jLabelInformativo = new JLabel("Escribe un nombre para saludar");
     private JTextField campoNombre = new JTextField();
     private JButton saludarButton = new JButton("¡Saludar!");
-    private VentanaEmergente ventanaEmergente;
-    private Container contentPane = getContentPane();
-    private GridBagLayout gridBagLayout = new GridBagLayout();
-    GridBagConstraints gridBagConstraints = new GridBagConstraints();
+    private JPanel panel = new JPanel(new MigLayout("", "40[]40", "30[]30[]30[]30"));
     public VentanaPrincipal(){
 
         super("Saludador");
-        setSize(600,300);
-        setMinimumSize(new Dimension(600,300));
-        setMaximumSize(new Dimension(600,300));
+        JFrame frame = this;
+        setSize(290,240);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        contentPane.setLayout(gridBagLayout);
+        setResizable(false);
+        setContentPane(panel);
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL; // 2
 
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        contentPane.add(jLabelInformativo, gridBagConstraints);
+        panel.add(jLabelInformativo, "wrap");
+        panel.add(campoNombre,"wrap,  gapleft 30");
+        panel.add(saludarButton, "gapleft 50");
 
         campoNombre.setPreferredSize(new Dimension(120,20));
-
-        gridBagConstraints.weightx = 1;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        contentPane.add(campoNombre, gridBagConstraints);
-
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        contentPane.add(saludarButton, gridBagConstraints);
-
         saludarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,15 +35,13 @@ public class VentanaPrincipal extends JFrame {
                         && !campoNombre.getText().equals("")
                         && !campoNombre.getText().isEmpty()
                 ){
-                    ventanaEmergente = new VentanaEmergente(campoNombre.getText());
-                    ventanaEmergente.setVisible(true);
+                    JOptionPane.showMessageDialog(frame, "¡Hola " + campoNombre.getText() + "!");
                 } else {
-                    ventanaEmergente = new VentanaEmergente("anónimo");
-                    ventanaEmergente.setVisible(true);
+                    JOptionPane.showMessageDialog(frame,"¡Hola anónimo!");
+
                 }
             }
         });
-
     }
 
 }
