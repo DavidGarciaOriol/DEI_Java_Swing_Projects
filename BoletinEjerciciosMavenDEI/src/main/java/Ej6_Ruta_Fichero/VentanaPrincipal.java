@@ -36,11 +36,16 @@ public class VentanaPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
-
                 fileChooser.showOpenDialog(frame);
-                if (fileChooser.getSelectedFile().getPath() != "" || fileChooser.getSelectedFile().getPath() != null){
 
-                    rutaTextField.setText((new File(String.valueOf(fileChooser.getSelectedFile())).getPath()));
+                if (fileChooser.getApproveButtonMnemonic() != 0){
+                    if (fileChooser.getSelectedFile() != null){
+                        if (fileChooser.getSelectedFile().getName().endsWith(".txt")){
+                            rutaTextField.setText((new File(String.valueOf(fileChooser.getSelectedFile())).getPath()));
+                        } else {
+                            JOptionPane.showMessageDialog(frame, "El archivo seleccionado debe ser un archivo de texto, con extensión \".txt\"");
+                        }
+                    }
                 }
             }
         });
