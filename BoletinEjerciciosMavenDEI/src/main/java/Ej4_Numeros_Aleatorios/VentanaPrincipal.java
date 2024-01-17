@@ -55,7 +55,7 @@ public class VentanaPrincipal extends JFrame {
                 try{
                     resutado.setText(String.valueOf(generarRandom((int)(minSpinner.getValue()), ((int)maxSpinner.getValue()))));
                 } catch (Exception ex){
-                    JOptionPane.showMessageDialog(frame, "El número superior debe ser mayor al inferior.");
+                    JOptionPane.showMessageDialog(frame, "El número inferior debe ser mayor al superior.");
                 }
             }
         });

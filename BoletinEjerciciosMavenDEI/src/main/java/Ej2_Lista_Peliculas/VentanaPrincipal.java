@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 public class VentanaPrincipal extends JFrame {
 
+    private JFrame frame = this;
     private JLabel infoLabel1 = new JLabel("Escribe el título de una película");
     private JLabel infoLabel2 = new JLabel("Películas");
     private JTextField nombrePeliculaCampo = new JTextField();
@@ -43,10 +44,17 @@ public class VentanaPrincipal extends JFrame {
         agregarBoton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                listaPeliculasComboBox.addItem(nombrePeliculaCampo.getText());
-                listaPeliculasComboBox.setSelectedIndex(listaPeliculasComboBox.getItemCount()-1);
-                nombrePeliculaCampo.setText("");
-                nombrePeliculaCampo.requestFocus();
+
+                if (!nombrePeliculaCampo.getText().equals("")){
+                    listaPeliculasComboBox.addItem(nombrePeliculaCampo.getText());
+                    listaPeliculasComboBox.setSelectedIndex(listaPeliculasComboBox.getItemCount()-1);
+                    nombrePeliculaCampo.setText("");
+                    nombrePeliculaCampo.requestFocus();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Debes escribir el nombre de una película para agregarla.");
+                }
+
+
             }
         });
     }
