@@ -42,6 +42,7 @@ public class VentanaPrincipal extends JFrame {
 
         super("Mini Encuesta");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         setContentPane(panel);
 
         panel.add(eligeOSLabel, "wrap");

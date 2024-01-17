@@ -24,6 +24,7 @@ public class VentanaPrincipal extends JFrame {
         super("Lista Películas");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(panel);
+        setResizable(false);
 
         panel.add(infoLabel1);
         panel.add(infoLabel2, "wrap");

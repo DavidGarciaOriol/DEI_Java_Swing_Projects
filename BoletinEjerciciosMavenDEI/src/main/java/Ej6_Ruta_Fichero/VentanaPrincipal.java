@@ -24,6 +24,7 @@ public class VentanaPrincipal extends JFrame {
         setMinimumSize(new Dimension(300,140));
         setPreferredSize(new Dimension(300,140));
         setSize(300,140);
+        setResizable(false);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(panel);
@@ -38,13 +39,11 @@ public class VentanaPrincipal extends JFrame {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.showOpenDialog(frame);
 
-                if (fileChooser.getApproveButtonMnemonic() != 0){
-                    if (fileChooser.getSelectedFile() != null){
-                        if (fileChooser.getSelectedFile().getName().endsWith(".txt")){
-                            rutaTextField.setText((new File(String.valueOf(fileChooser.getSelectedFile())).getPath()));
-                        } else {
-                            JOptionPane.showMessageDialog(frame, "El archivo seleccionado debe ser un archivo de texto, con extensión \".txt\"");
-                        }
+                if (fileChooser.getSelectedFile() != null){
+                    if (fileChooser.getSelectedFile().getName().endsWith(".txt")){
+                        rutaTextField.setText((new File(String.valueOf(fileChooser.getSelectedFile())).getPath()));
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "El archivo seleccionado debe ser un archivo de texto, con extensión \".txt\"");
                     }
                 }
             }

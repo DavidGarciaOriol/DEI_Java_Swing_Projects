@@ -27,6 +27,7 @@ public class VentanaPrincipal extends JFrame {
 
         super("Generador Aleatorios");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         setContentPane(panel);
 
         resutado.setEditable(false);

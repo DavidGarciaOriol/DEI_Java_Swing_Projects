@@ -12,6 +12,7 @@ public class Ventana extends JFrame {
     public Ventana(){
         super("Ventana");
         setSize(1280, 720);
+        setResizable(false);
         setContentPane(panel);
 
         JButton jButton;
