@@ -1,6 +1,7 @@
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -20,26 +21,29 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
     private JMenu casa, extras;
     private JMenu habitaciones;
     private JMenuItem habitacion1, habitacion2, garaje, trastero;
-    private JCheckBox salon;
+    private JCheckBoxMenuItem salon;
     private ButtonGroup bg;
-    private JRadioButton cocina, banio;
-    private JPanel panel = new JPanel(new MigLayout("", "20[]20", "20[]20"));
+    private JRadioButtonMenuItem cocina, banio;
+    private JPanel panel = new JPanel();
     private JTextPane historial;
+    private ImageIcon casaIcon = new ImageIcon("res\\home.png");
+
     public VentanaPrincipal(){
 
+        // FRAME
         super("Casa");
-        JFrame frame = this;
         setSize(600,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setContentPane(panel);
 
         // MENU BAR
-        menuBar=new JMenuBar();
+        menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
         // CASA & EXTRAS
-        casa=new JMenu("Casa");
+        casa = new JMenu("Casa");
+        casa.setIcon(casaIcon);
         menuBar.add(casa);
 
         extras=new JMenu("Extras");
@@ -49,24 +53,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         habitaciones=new JMenu("Habitaciones");
         casa.add(habitaciones);
 
-        salon=new JCheckBox("Salón");
+        salon = new JCheckBoxMenuItem("Salón");
         salon.setSelected(true);
-        salon.setMnemonic(KeyEvent.VK_S);
+        salon.setAccelerator(KeyStroke.getKeyStroke('S', InputEvent.CTRL_DOWN_MASK));
         casa.add(salon);
         salon.addActionListener(this);
 
         casa.add(new JSeparator());
 
-        cocina=new JRadioButton("Cocina");
+        cocina=new JRadioButtonMenuItem("Cocina");
         cocina.setSelected(true);
-        cocina.setMnemonic(KeyEvent.VK_C);
+        cocina.setAccelerator(KeyStroke.getKeyStroke('C', InputEvent.CTRL_DOWN_MASK));
         casa.add(cocina);
         cocina.addActionListener(this);
 
-        banio=new JRadioButton("Baño");
-        banio.setMnemonic(KeyEvent.VK_B);
+        banio=new JRadioButtonMenuItem("Baño");
+        banio.setAccelerator(KeyStroke.getKeyStroke('B', InputEvent.CTRL_DOWN_MASK));
         casa.add(banio);
-
         banio.addActionListener(this);
 
         // RADIO BUTTONS GROUP
@@ -86,58 +89,66 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 
         // EXTRAS: GARAJE & TRASTERO
         garaje=new JMenuItem("Garaje");
-        garaje.setMnemonic(KeyEvent.VK_G);
+        garaje.setAccelerator(KeyStroke.getKeyStroke('G', InputEvent.ALT_DOWN_MASK));
         extras.add(garaje);
         garaje.addActionListener(this);
 
         trastero=new JMenuItem("Trastero");
-        trastero.setMnemonic(KeyEvent.VK_T);
+        trastero.setAccelerator(KeyStroke.getKeyStroke('T', InputEvent.ALT_DOWN_MASK));
         extras.add(trastero);
         trastero.addActionListener(this);
 
         // HISTORIAL
         historial = new JTextPane();
+        historial.setDisabledTextColor(new Color(120,120,120));
+        historial.setAutoscrolls(true);
         historial.setEditable(false);
+        historial.setEnabled(false);
         historial.setSize(getSize());
         historial.setPreferredSize(getSize());
-        panel.add(historial);
+
+        panel.add(new JScrollPane(historial));
+
         pack();
     }
 
     public void actionPerformed(ActionEvent e) {
 
+        // CONTROLAMOS LAS ENTRADAS A CADA HABITACIÓN
+
         if (e.getSource() == habitacion1) {
-            entradas_habitacion++;
-            historial.setText(historial.getText() + "\n" + "Has entrado a la habitación "
-                    + entradas_habitacion + (entradas_habitacion>1?" veces.":" vez."));
+            entradas_habitacion ++;
+            historial.setText(historial.getText() + "Has entrado a la habitación "
+                    + entradas_habitacion + (entradas_habitacion>1?" veces.":" vez.") + "\n");
         }
         if (e.getSource() == salon) {
             entradas_salon += salon.isSelected()?1:0;
-            historial.setText(historial.getText() + "\n" + "Has entrado al salón "
+            historial.setText(historial.getText() + "Has entrado al salón "
                     + entradas_salon + (entradas_salon>1||entradas_salon==0?" veces.":" vez.") + " Estado "
-                    + (salon.isSelected()?"activado.":"desactivado."));
+                    + (salon.isSelected()?"activado.":"desactivado.") + "\n");
         }
         if (e.getSource() == cocina) {
             entradas_cocina ++;
-            historial.setText(historial.getText() + "\n" + "Has entrado a la cocina "
+            historial.setText(historial.getText() + "Has entrado a la cocina "
                     + entradas_cocina + (entradas_cocina>1?" veces.":" vez.") + " Estado "
-                    + (cocina.isSelected()?"activado.":"desactivado."));
+                    + (cocina.isSelected()?"activado.":"desactivado.") + "\n");
         }
         if (e.getSource() == banio) {
             entradas_banio ++;
-            historial.setText(historial.getText() + "\n" + "Has entrado al baño " + entradas_banio
+            historial.setText(historial.getText() + "Has entrado al baño " + entradas_banio
                     + (entradas_banio>1?" veces.":" vez.") + " Estado "
-                    + (banio.isSelected()?"activado.":"desactivado."));
+                    + (banio.isSelected()?"activado.":"desactivado.") + "\n");
+
         }
         if (e.getSource() == garaje){
-            entradas_garaje++;
-            historial.setText(historial.getText() + "\n" + "Has entrado al garaje "
-                    + entradas_garaje + (entradas_garaje>1?" veces.":" vez."));
+            entradas_garaje ++;
+            historial.setText(historial.getText() + "Has entrado al garaje "
+                    + entradas_garaje + (entradas_garaje>1?" veces.":" vez.") + "\n");
         }
         if (e.getSource() == trastero){
-            entradas_trastero++;
-            historial.setText(historial.getText() + "\n" + "Has entrado al trastero "
-                    + entradas_garaje + (entradas_garaje>1?" veces.":" vez."));
+            entradas_trastero ++;
+            historial.setText(historial.getText() + "Has entrado al trastero "
+                    + entradas_garaje + (entradas_garaje>1?" veces.":" vez.") + "\n");
         }
     }
 }
