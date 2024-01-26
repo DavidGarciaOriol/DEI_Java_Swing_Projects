@@ -1,11 +1,10 @@
-import net.miginfocom.swing.MigLayout;
-
 import javax.swing.*;
-import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 
-public class VentanaPrincipal extends JFrame implements ActionListener{
+public class VentanaPrincipal extends JFrame implements ActionListener, ChangeListener {
 
     // CONTADORES
 
@@ -65,12 +64,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         cocina.setSelected(true);
         cocina.setAccelerator(KeyStroke.getKeyStroke('C', InputEvent.CTRL_DOWN_MASK));
         casa.add(cocina);
-        cocina.addActionListener(this);
+        cocina.addChangeListener(this);
 
         banio=new JRadioButtonMenuItem("Baño");
         banio.setAccelerator(KeyStroke.getKeyStroke('B', InputEvent.CTRL_DOWN_MASK));
         casa.add(banio);
-        banio.addActionListener(this);
+        banio.addChangeListener(this);
 
         // RADIO BUTTONS GROUP
         bg = new ButtonGroup();
@@ -127,19 +126,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
                     + entradas_salon + (entradas_salon>1||entradas_salon==0?" veces.":" vez.") + " Estado "
                     + (salon.isSelected()?"activado.":"desactivado.") + "\n");
         }
-        if (e.getSource() == cocina) {
-            entradas_cocina ++;
-            historial.setText(historial.getText() + "Has entrado a la cocina "
-                    + entradas_cocina + (entradas_cocina>1?" veces.":" vez.") + " Estado "
-                    + (cocina.isSelected()?"activado.":"desactivado.") + "\n");
-        }
-        if (e.getSource() == banio) {
-            entradas_banio ++;
-            historial.setText(historial.getText() + "Has entrado al baño " + entradas_banio
-                    + (entradas_banio>1?" veces.":" vez.") + " Estado "
-                    + (banio.isSelected()?"activado.":"desactivado.") + "\n");
-
-        }
         if (e.getSource() == garaje){
             entradas_garaje ++;
             historial.setText(historial.getText() + "Has entrado al garaje "
@@ -148,7 +134,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         if (e.getSource() == trastero){
             entradas_trastero ++;
             historial.setText(historial.getText() + "Has entrado al trastero "
-                    + entradas_garaje + (entradas_garaje>1?" veces.":" vez.") + "\n");
+                    + entradas_trastero + (entradas_trastero>1?" veces.":" vez.") + "\n");
+        }
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        if (e.getSource() == cocina) {
+            entradas_cocina += cocina.isSelected()?1:0;
+            historial.setText(historial.getText() + "Has entrado a la cocina "
+                    + entradas_cocina + (entradas_cocina>1?" veces.":" vez.") + " Estado "
+                    + (cocina.isSelected()?"activado.":"desactivado.") + "\n");
+        }
+        if (e.getSource() == banio) {
+            entradas_banio += banio.isSelected()?1:0;
+            historial.setText(historial.getText() + "Has entrado al baño " + entradas_banio
+                    + (entradas_banio>1?" veces.":" vez.") + " Estado "
+                    + (banio.isSelected()?"activado.":"desactivado.") + "\n");
         }
     }
 }
