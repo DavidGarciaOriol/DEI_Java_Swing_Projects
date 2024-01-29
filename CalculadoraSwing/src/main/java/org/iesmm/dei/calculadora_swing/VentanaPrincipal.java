@@ -342,7 +342,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
                 } catch (NumberFormatException ex){
                     System.err.println("ERROR CONTROLADO: " + ex.getMessage()  + " - IRRELEVANTE");
                 }
-
         }
         return out;
     }
