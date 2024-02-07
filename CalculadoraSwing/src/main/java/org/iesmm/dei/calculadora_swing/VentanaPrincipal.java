@@ -5,35 +5,35 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaPrincipal extends JFrame implements ActionListener{
+public class VentanaPrincipal extends JFrame implements ActionListener {
 
     // COMPONENTES ESTÁTICOS
-    private JFrame frame = this;
-    private JPanel panel = new JPanel(new GridLayout(6,4));
-    private JTextPane display;
+    private final JFrame frame = this;
+    private final JPanel panel = new JPanel(new GridLayout(6, 4));
+    private final JTextPane display;
 
     // VARIABLES DE LA LÓGICA DEL PROGRAMA
     private double numero1 = 0;
     private double numero2 = 0;
-    private double resultado = 0;
     private char operacion = 'N';
-    private boolean resultado_otenido = false;
-    public VentanaPrincipal(){
+    private boolean resultado_otenido = false; // Comprueba si se obtuvo un resultado previamente. Control de errores de funcionamiento.
+
+    public VentanaPrincipal() {
 
         // MAQUETACIÓN DEL FRAME PRINCIPAL
 
         super("Calculadora");
         JFrame frame = this;
-        setSize(300,600);
+        setSize(300, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setContentPane(panel);
 
         // DECLARACIÓN DE BOTONES DINÁMICOS
 
-        for (int i = 0; i < 20; i++){
+        for (int i = 0; i < 20; i++) {
             JButton button = new JButton();
-            switch (i){
+            switch (i) {
                 case 0:
                     button.setText("1");
                     button.setActionCommand("1");
@@ -125,33 +125,39 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
         display.setText("0");
         display.setEnabled(false);
         display.setDisabledTextColor(Color.black);
-        display.setPreferredSize(new Dimension(80,20));
+        display.setPreferredSize(new Dimension(80, 30));
 
-        display.add(new JScrollPane());
-
-        panel.add(display);
+        panel.add(new JScrollPane(display));
         pack();
+    }
+
+    // ELIMINA EL ÚLTIMO NÚMERO/CARACTER DE LA CADENA DEL DISPLAY
+    public static String eliminarUltimoCaracter(String msg) {
+        return (msg == null || msg.isEmpty() || msg.length() == 1)
+                ? "0"
+                : (msg.substring(0, msg.length() - 1));
     }
 
     // LISTENER DE BOTONES PULSADOS
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();
+        double resultado = 0;
 
-        switch (actionCommand){
+        switch (actionCommand) {
 
             /** Al pulsar los números, se comprueba el display y se agregan si
              * procede al mismo, modificando la variable correspondiente en función
              * del contexto y situación de la operación.
              */
             case "1", "2", "3", "4", "5", "6", "7", "8", "9":
-                if (display.getText().equals("0") || display.getText().equals("#ERROR /0")){
+                if (display.getText().equals("0") || display.getText().equals("#ERROR /0")) {
                     display.setText(actionCommand);
                 } else {
                     display.setText(display.getText() + actionCommand);
                 }
-                if (operacion != 'N'){
-                    if (resultado_otenido){
+                if (operacion != 'N') {
+                    if (resultado_otenido) {
                         numero1 = Double.parseDouble(display.getText());
                     } else {
                         numero2 = Double.parseDouble(display.getText());
@@ -162,12 +168,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
                 break;
 
             case "0":
-                if (!display.getText().equals("0")){
-                    if (!display.getText().equals("#ERROR /0")){
+                if (!display.getText().equals("0")) {
+                    if (!display.getText().equals("#ERROR /0")) {
                         display.setText(display.getText() + actionCommand);
-                        if (operacion != 'N'){
-                            if (resultado_otenido){
-                                numero1 =Double.parseDouble(display.getText());
+                        if (operacion != 'N') {
+                            if (resultado_otenido) {
+                                numero1 = Double.parseDouble(display.getText());
                             } else {
                                 numero2 = Double.parseDouble(display.getText());
                             }
@@ -182,7 +188,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
              * siempre y cuando no haya uno ya.
              */
             case ",":
-                if (!display.getText().contains(".")){
+                if (!display.getText().contains(".")) {
                     display.setText(display.getText() + ".");
                 }
                 break;
@@ -192,7 +198,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
              * realizar cuando se pulse en el botón igual (=).
              */
             case "+":
-                if (!display.getText().equals("#ERROR /0")){
+                if (!display.getText().equals("#ERROR /0")) {
                     if (operacion != 'N') numero2 = 0;
                     resultado_otenido = false;
                     operacion = '+';
@@ -201,7 +207,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
                 break;
 
             case "-":
-                if (!display.getText().equals("#ERROR /0")){
+                if (!display.getText().equals("#ERROR /0")) {
                     if (operacion != 'N') numero2 = 0;
                     resultado_otenido = false;
                     operacion = '-';
@@ -210,7 +216,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
                 break;
 
             case "x":
-                if (!display.getText().equals("#ERROR /0")){
+                if (!display.getText().equals("#ERROR /0")) {
                     if (operacion != 'N') numero2 = 0;
                     resultado_otenido = false;
                     operacion = 'x';
@@ -219,7 +225,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
                 break;
 
             case "/":
-                if (!display.getText().equals("#ERROR /0")){
+                if (!display.getText().equals("#ERROR /0")) {
                     if (operacion != 'N') numero2 = 0;
                     resultado_otenido = false;
                     operacion = '/';
@@ -229,28 +235,34 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 
             /** Realiza la operación pertinente, controlando errores. */
             case "=":
-                if (!display.getText().equals("#ERROR /0")){
+                if (!display.getText().equals("#ERROR /0")) {
 
-                        resultado = operar(numero1, numero2);
-                        display.setText(String.valueOf(resultado));
-                        numero1 = resultado;
-                        resultado_otenido = true;
+                    resultado = operar(numero1, numero2);
+                    display.setText(String.valueOf(resultado));
+                    numero1 = resultado;
+                    resultado_otenido = true;
 
-                        if (resultado == Double.POSITIVE_INFINITY || resultado == Double.NEGATIVE_INFINITY){
-                            display.setText("#ERROR /0");
-                            numero1 = 0;
-                            numero2 = 0;
-                            resultado = 0;
-                            resultado_otenido = false;
-                            JOptionPane.showMessageDialog(frame, "ERROR AL INTENTAR DIVIDIR ENTRE CERO");
-                        }
+                    /** Comprueba si el resultado obtenido ha sido un infinito
+                     * o Not a Number, genera el cuadro de error correspondiente
+                     * y reinicia los valores.
+                     * El usuario puede volver a operar con normalidad
+                     * la calculadora al pulsar C, CE o un número cualquiera.
+                     */
+                    if (resultado == Double.POSITIVE_INFINITY || resultado == Double.NEGATIVE_INFINITY || Double.isNaN(resultado)) {
+                        display.setText("#ERROR /0");
+                        numero1 = 0;
+                        numero2 = 0;
+                        operacion = 'N';
+                        resultado_otenido = false;
+                        JOptionPane.showMessageDialog(frame, "ERROR AL INTENTAR DIVIDIR ENTRE CERO", "Advertencia", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 break;
 
             /** Resetea el display en el contexto de la operación actual. */
             case "CE":
                 display.setText("0");
-                if (resultado_otenido){
+                if (resultado_otenido) {
                     numero1 = 0;
                 } else {
                     numero2 = 0;
@@ -269,11 +281,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 
             /** Elimina el último número o carácter agregado al display. */
             case "DEL":
-                if (!display.getText().equals("#ERROR /0")){
+                if (!display.getText().equals("#ERROR /0")) {
                     display.setText(eliminarUltimoCaracter(display.getText()));
 
-                    if (operacion != 'N'){
-                        if (resultado_otenido){
+                    if (display.getText().endsWith("E")) {
+                        display.setText(eliminarUltimoCaracter(display.getText()));
+                    }
+
+                    if (operacion != 'N') {
+                        if (resultado_otenido) {
                             numero1 = Double.parseDouble(display.getText());
                         } else {
                             numero2 = Double.parseDouble(display.getText());
@@ -287,23 +303,27 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
             /** Funnción para DEBUG en consola. */
             case "SHELL":
                 try {
-                    System.out.println("NUM1: " + numero1
+                    System.out.println(
+                            "NUM1: " + numero1
                             + " | NUM2: " + numero2
                             + " | RESULTADO: " + operar(numero1, numero2)
-                            + " | OPERADOR: " + operacion);
-                } catch (ArithmeticException ex){
-                    System.err.println("ERROR CONTROLADO: DIVIDIR ENTRE 0 - " + ex.getMessage()
+                            + " | OPERADOR: " + operacion
+                            + " | RESULTADO?: " + resultado_otenido);
+                } catch (ArithmeticException ex) {
+                    System.err.println(
+                            "ERROR CONTROLADO: DIVIDIR ENTRE 0 - " + ex.getMessage()
                             + "\nNUM1: " + numero1
                             + " | NUM2: " + numero2
-                            + " | OPERADOR: " + operacion);
+                            + " | OPERADOR: " + operacion
+                            + " | RESULTADO?: " + resultado_otenido);
                 }
         }
     }
 
     // CALCULAR EN FUNCIÓN AL OPERADOR PULSADO MÁS RECIENTE
-    private double operar(double num1, double num2){
+    private double operar(double num1, double num2) {
         double out = 0;
-        switch (operacion){
+        switch (operacion) {
             case '+':
                 out = num1 + num2;
                 break;
@@ -317,15 +337,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
                 out = num1 / num2;
                 break;
             default:
-                out = Double.parseDouble(display.getText());
+                try {
+                    out = Double.parseDouble(display.getText());
+                } catch (NumberFormatException ex){
+                    System.err.println("ERROR CONTROLADO: " + ex.getMessage()  + " - IRRELEVANTE");
+                }
         }
         return out;
-    }
-
-    // ELIMINA EL ÚLTIMO NÚMERO/CARACTER DE LA CADENA DEL DISPLAY
-    public static String eliminarUltimoCaracter(String msg) {
-        return (msg == null || msg.isEmpty() || msg.length() == 1)
-                ? "0"
-                : (msg.substring(0, msg.length() - 1));
     }
 }
