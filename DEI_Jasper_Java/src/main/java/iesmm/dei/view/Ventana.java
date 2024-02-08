@@ -11,9 +11,11 @@ public class Ventana extends JFrame {
 
     private JButton iniciar;
     private JPanel panel;
+    private JFrame frame;
 
     public Ventana(){
         super("Lanzador Informe");
+        frame = this;
         setSize(140,100);
         setLocation(400,200);
         setResizable(false);
@@ -24,8 +26,19 @@ public class Ventana extends JFrame {
         iniciar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Conexion conexion = new Conexion();
-                conexion.iniciar();
+                try{
+                    Conexion conexion = new Conexion("bbdd\\Northwind.db", "MiReport.jasper");
+                    conexion.iniciar();
+                    if (conexion.isConectado()){
+                        conexion.desconectar();
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Error al cargar la base de datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception ex){
+                    System.err.println(ex.getMessage());
+                    JOptionPane.showMessageDialog(frame, "Error al cargar el reporte.", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                }
             }
         });
 

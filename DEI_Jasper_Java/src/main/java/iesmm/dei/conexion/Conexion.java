@@ -16,41 +16,55 @@ import java.sql.SQLException;
 import static net.sf.jasperreports.engine.util.JRLoader.getResource;
 
 public class Conexion {
-
     private Connection connection;
     private String urlDB;
     private URL urlJasperReport;
+    private File databaseFile;
     private File file;
+    private String driver = "jdbc:sqlite:";
+    private boolean conectado;
 
-    public Conexion(){
-        this.urlDB = "DEI_Jasper_Java\\bbdd\\Northwind.db";
-        this.urlJasperReport = getResource("MiReport.jasper");
-        file = new File(this.urlJasperReport.getPath());
+    public Conexion(String bbddPath, String jasperReportFileName){
+        this.conectado = false;
+        this.databaseFile = new File(bbddPath);
+        this.urlDB = databaseFile.getPath();
+        this.urlJasperReport = getResource(jasperReportFileName);
+        this.file = new File(this.urlJasperReport.getPath());
     }
 
     public void iniciar(){
         boolean conexion_realizada = conectar();
         if (conexion_realizada) {
             crearJasperViewer();
-            desconectar();
+            // desconectar();
         }
     }
 
     private boolean conectar(){
-        boolean out = false;
+        boolean out;
         try {
-            this.connection = DriverManager.getConnection(urlDB);
-            System.out.println("Conexión establecida con SQLite");
+            if (databaseFile.exists() && databaseFile.isFile()){
+                this.connection = DriverManager.getConnection(driver+urlDB);
+                System.out.println("Conexión Establecida.");
+                this.conectado = true;
+                out = true;
+            } else {
+                System.err.println("No se ha podido establecer la conexión con la base de datos.");
+                out = false;
+            }
+
         } catch (SQLException e) {
             System.err.println("ERROR: " + e.getSQLState() + " -> " + e.getMessage());
+            out = false;
         }
         return out;
     }
 
-    private void desconectar(){
+    public void desconectar(){
         if (this.connection != null){
             try {
                 this.connection.close();
+                this.conectado = false;
             } catch (SQLException e) {
                 System.err.println("ERROR: " + e.getSQLState() + "\n" + e.getMessage());
             }
@@ -59,12 +73,16 @@ public class Conexion {
 
     private void crearJasperViewer(){
         try {
-            JasperReport informe = (JasperReport) JRLoader.loadObject(file);
-            JasperPrint print = JasperFillManager.fillReport(informe, null, connection);
+            JasperReport informe = (JasperReport) JRLoader.loadObject(this.file);
+            JasperPrint print = JasperFillManager.fillReport(informe, null, this.connection);
             JasperViewer jasperViewer = new JasperViewer(print);
             jasperViewer.setVisible(true);
         } catch (JRException e) {
             System.err.println("ERROR: " + e.getMessage());
         }
+    }
+
+    public boolean isConectado() {
+        return conectado;
     }
 }
