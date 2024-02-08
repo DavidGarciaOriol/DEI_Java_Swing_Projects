@@ -23,7 +23,7 @@ public class Conexion {
     private File file;
 
     public Conexion(){
-        this.urlDB = "D:\\ciclot\\DGO\\DEI_Java_Swing_Projects\\DEI_Jasper_Java\\bbdd\\Northwind.db";
+        this.urlDB = "DEI_Jasper_Java\\bbdd\\Northwind.db";
         this.urlJasperReport = getResource("MiReport.jasper");
         file = new File(this.urlJasperReport.getPath());
     }
@@ -42,7 +42,7 @@ public class Conexion {
             this.connection = DriverManager.getConnection(urlDB);
             System.out.println("Conexión establecida con SQLite");
         } catch (SQLException e) {
-            System.err.println("ERROR: " + e.getSQLState() + "\n" + e.getMessage());
+            System.err.println("ERROR: " + e.getSQLState() + " -> " + e.getMessage());
         }
         return out;
     }
