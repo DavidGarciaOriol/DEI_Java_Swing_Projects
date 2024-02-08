@@ -32,14 +32,17 @@ public class Conexion {
         this.file = new File(this.urlJasperReport.getPath());
     }
 
+    // Inicia el programa, llamando a los métodos correspondientes.
     public void iniciar(){
         boolean conexion_realizada = conectar();
-        if (conexion_realizada) {
+
+        if (conexion_realizada) { // Se comprueba que el resultado de la conexión fue satisfactorio.
             crearJasperViewer();
             // desconectar();
         }
     }
 
+    // Método de conexión.
     private boolean conectar(){
         boolean out;
         try {
@@ -52,7 +55,6 @@ public class Conexion {
                 System.err.println("No se ha podido establecer la conexión con la base de datos.");
                 out = false;
             }
-
         } catch (SQLException e) {
             System.err.println("ERROR: " + e.getSQLState() + " -> " + e.getMessage());
             out = false;
@@ -60,6 +62,7 @@ public class Conexion {
         return out;
     }
 
+    // Método de desconexión.
     public void desconectar(){
         if (this.connection != null){
             try {
@@ -71,6 +74,7 @@ public class Conexion {
         }
     }
 
+    // Método que crea la vista del informe.
     private void crearJasperViewer(){
         try {
             JasperReport informe = (JasperReport) JRLoader.loadObject(this.file);
@@ -82,6 +86,7 @@ public class Conexion {
         }
     }
 
+    // Comprueba el estado de la conexión, para propósito de control de estado.
     public boolean isConectado() {
         return conectado;
     }

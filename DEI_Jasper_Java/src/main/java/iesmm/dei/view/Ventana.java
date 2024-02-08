@@ -21,6 +21,7 @@ public class Ventana extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Botón que inicializa la aplicación de conexión
         iniciar = new JButton("Lanzar Informe");
         iniciar.setMargin(new Insets(12,12,12,12));
         iniciar.addActionListener(new ActionListener() {
