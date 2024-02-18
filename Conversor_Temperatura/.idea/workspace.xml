@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ba5e748e-057a-4f22-9355-9ab44294d8bf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej1/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej1/VentanaApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej1/VentanaEmergente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej2/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej3/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej4/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej5/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej6/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BoletinEjerciciosDEI/src/ej7/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej1_Saludador/VentanaPrincipal$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej1_Saludador/VentanaPrincipal$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej2_Lista_Peliculas/VentanaPrincipal$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej2_Lista_Peliculas/VentanaPrincipal$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej3_Miniencuesta/VentanaPrincipal$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej3_Miniencuesta/VentanaPrincipal$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej3_Miniencuesta/VentanaPrincipal$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej3_Miniencuesta/VentanaPrincipal$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej4_Numeros_Aleatorios/VentanaPrincipal$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej4_Numeros_Aleatorios/VentanaPrincipal$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej5_Imitador_Espejo/VentanaPrincipal$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej5_Imitador_Espejo/VentanaPrincipal$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej5_Imitador_Espejo/VentanaPrincipal$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej5_Imitador_Espejo/VentanaPrincipal$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej5_Imitador_Espejo/VentanaPrincipal$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej5_Imitador_Espejo/VentanaPrincipal$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej5_Imitador_Espejo/VentanaPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej5_Imitador_Espejo/VentanaPrincipal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej6_Ruta_Fichero/VentanaPrincipal$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej6_Ruta_Fichero/VentanaPrincipal$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej6_Ruta_Fichero/VentanaPrincipal$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej7_Ruta_Ficheros_Menu/VentanaPrincipal$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej7_Ruta_Ficheros_Menu/VentanaPrincipal$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej7_Ruta_Ficheros_Menu/VentanaPrincipal$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../BoletinEjerciciosMavenDEI/target/classes/Ej7_Ruta_Ficheros_Menu/VentanaPrincipal$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DEI_Jasper_Java/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DEI_Jasper_Java/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DEI_Jasper_Java/bb.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DEI_Jasper_Java/bbddNorthwind.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DEI_Jasper_Java/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DEI_Jasper_Java/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DEI_Jasper_Java/src/main/java/iesmm/dei/view/Ventana.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DEI_Jasper_Java/src/main/java/iesmm/dei/view/Ventana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ejercicio_Menus/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Ejercicio_Menus/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,23 +44,27 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="2ZXqt3bKHocBPUVcObz1Sdj0tyX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/ciclot/DGO/DEI_Java_Swing_Projects/Conversor_Temperatura&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/usuario/Desktop/Eliss2022/Proyectos/Proyectos de Clase/DEI/Swing/Conversor_Temperatura",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

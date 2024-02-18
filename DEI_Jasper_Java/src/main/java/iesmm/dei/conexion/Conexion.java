@@ -12,6 +12,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static net.sf.jasperreports.engine.util.JRLoader.getResource;
 
@@ -23,62 +25,62 @@ public class Conexion {
     private File file;
     private String driver = "jdbc:sqlite:";
     private boolean conectado;
+    private String parametroReport;
 
     public Conexion(String bbddPath, String jasperReportFileName){
         this.conectado = false;
         this.databaseFile = new File(bbddPath);
         this.urlDB = databaseFile.getPath();
         this.urlJasperReport = getResource(jasperReportFileName);
-        this.file = new File(this.urlJasperReport.getPath());
+        this.file = new File(this.urlJasperReport.getPath().replace("%20", " "));
     }
 
     // Inicia el programa, llamando a los métodos correspondientes.
-    public void iniciar(){
+    public void iniciar() throws JRException, SQLException{
         boolean conexion_realizada = conectar();
 
         if (conexion_realizada) { // Se comprueba que el resultado de la conexión fue satisfactorio.
-            crearJasperViewer();
+            crearJasperViewer(parametroReport);
             // desconectar();
         }
     }
 
     // Método de conexión.
-    private boolean conectar(){
+    private boolean conectar() throws SQLException{
         boolean out;
-        try {
-            if (databaseFile.exists() && databaseFile.isFile()){
-                this.connection = DriverManager.getConnection(driver+urlDB);
-                System.out.println("Conexión Establecida.");
-                this.conectado = true;
-                out = true;
-            } else {
-                System.err.println("No se ha podido establecer la conexión con la base de datos.");
-                out = false;
-            }
-        } catch (SQLException e) {
-            System.err.println("ERROR: " + e.getSQLState() + " -> " + e.getMessage());
+        if (databaseFile.exists() && databaseFile.isFile()){
+            this.connection = DriverManager.getConnection(driver+urlDB);
+            System.out.println("Conexión Establecida.");
+            this.conectado = true;
+            out = true;
+        } else {
+            System.err.println("No se ha podido establecer la conexión con la base de datos.");
             out = false;
         }
         return out;
     }
 
     // Método de desconexión.
-    public void desconectar(){
+    public void desconectar() throws SQLException{
         if (this.connection != null){
-            try {
-                this.connection.close();
-                this.conectado = false;
-            } catch (SQLException e) {
-                System.err.println("ERROR: " + e.getSQLState() + "\n" + e.getMessage());
-            }
+            this.connection.close();
+            this.conectado = false;
         }
     }
 
+    public void setParametroReport(String parametroReport) {
+        this.parametroReport = parametroReport;
+    }
+
     // Método que crea la vista del informe.
-    private void crearJasperViewer(){
+    private void crearJasperViewer(String nombreEmpleado) throws JRException{
+
+        Map<String, Object> mapa = new HashMap<String, Object>();
+        mapa.put("nombreApellido", nombreEmpleado);
+
         try {
             JasperReport informe = (JasperReport) JRLoader.loadObject(this.file);
-            JasperPrint print = JasperFillManager.fillReport(informe, null, this.connection);
+            JasperPrint print = JasperFillManager.fillReport(informe, mapa, this.connection);
             JasperViewer jasperViewer = new JasperViewer(print);
             jasperViewer.setVisible(true);
         } catch (JRException e) {
